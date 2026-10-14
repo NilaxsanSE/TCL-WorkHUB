@@ -1,0 +1,31 @@
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+.next/
+out/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Docker and local data
+data/
+volumes/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+

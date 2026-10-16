@@ -4,8 +4,25 @@ Target server:
 
 - IP: `10.20.11.110`
 - SSH port: `22`
+- SSH user: `nilaxsan`
 - OS: Debian 13
 - access: OpenVPN private network
+
+## Current Development Deployment
+
+The initial development environment is installed at `/opt/tcl-workhub`.
+
+- Docker Engine: installed from Debian packages
+- Docker Compose: installed from Debian packages
+- Git: installed
+- repository: cloned from GitHub on branch `main`
+- server `.env`: generated with random secrets and permissions set to `600`
+- frontend: port `3000`
+- backend: port `8000`
+- Keycloak: port `8080`
+- PostgreSQL: available only inside the Docker network
+
+The current Keycloak configuration uses development mode while access is limited to the private network. Production mode and HTTPS proxy settings must be completed with the TechCenter reverse proxy before public use.
 
 ## After SSH Access Is Available
 
@@ -44,4 +61,3 @@ docker compose up -d
 ```
 
 Before production use, all `change-me` values in `.env` must be replaced.
-

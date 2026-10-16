@@ -1,0 +1,54 @@
+{
+  "realm": "tcl-workhub",
+  "displayName": "TCL WorkHub",
+  "enabled": true,
+  "registrationAllowed": false,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "employee",
+        "description": "Access to the employee's own WorkHub records"
+      },
+      {
+        "name": "admin",
+        "description": "Administrative access to all WorkHub records and approvals"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "tcl-workhub-web",
+      "name": "TCL WorkHub Web",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://10.20.11.110:3000/*",
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "http://10.20.11.110:3000",
+        "http://localhost:3000"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "+"
+      }
+    },
+    {
+      "clientId": "tcl-workhub-api",
+      "name": "TCL WorkHub API",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "bearerOnly": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false
+    }
+  ]
+}

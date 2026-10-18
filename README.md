@@ -30,6 +30,10 @@ The first version will support:
 - `keycloak`: authentication and roles
 - `redis`: optional support service for future background jobs and caching
 
+## Authentication Foundation
+
+The first protected endpoints and browser login flow use Keycloak Authorization Code Flow with PKCE. FastAPI validates signed access tokens and synchronizes the authenticated identity to the local `users` table. See [Authentication Development](docs/authentication-development.md) for the flow and configuration model.
+
 ## Local Policy
 
 This repository is prepared locally, but heavy Docker builds and database volumes should run on the server because local disk space is limited.

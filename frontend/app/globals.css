@@ -1,11 +1,14 @@
 :root {
   color-scheme: light;
-  --background: #f7f8fa;
-  --foreground: #111827;
-  --muted: #5b6472;
-  --line: #d8dde6;
+  --background: #f4f6f8;
+  --foreground: #17202a;
+  --muted: #5f6b76;
+  --line: #d5dbe1;
   --panel: #ffffff;
-  --accent: #0f766e;
+  --accent: #087f5b;
+  --accent-hover: #066b4c;
+  --danger: #b42318;
+  --success: #16794a;
 }
 
 * {
@@ -24,75 +27,180 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+button {
+  font: inherit;
+}
+
 .shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(960px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 56px 0;
+  padding: 48px 0;
 }
 
-.intro {
-  max-width: 760px;
+.brand-bar,
+.profile-heading,
+.access-row,
+.error-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.eyebrow {
-  margin: 0 0 12px;
+.eyebrow,
+.label {
+  margin: 0 0 8px;
   color: var(--accent);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
+h1,
+h2,
+p {
+  letter-spacing: 0;
+}
+
 h1 {
   margin: 0;
-  font-size: 48px;
-  line-height: 1.05;
+  font-size: 36px;
+  line-height: 1.1;
 }
 
-.intro p:last-child {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 19px;
-  line-height: 1.55;
+h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.25;
 }
 
-.workflow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 42px;
-}
-
-.step {
-  min-height: 118px;
+.auth-panel {
+  min-height: 280px;
+  margin-top: 36px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  padding: 18px;
+  padding: 32px;
 }
 
-.step span {
-  display: inline-grid;
-  width: 32px;
-  height: 32px;
-  place-items: center;
-  border-radius: 50%;
+.signed-out {
+  max-width: 560px;
+}
+
+.signed-out p,
+.profile p,
+.status {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.signed-out p {
+  margin: 12px 0 24px;
+}
+
+.profile-heading {
+  align-items: flex-start;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-heading p:last-child {
+  margin: 6px 0 0;
+}
+
+.role {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.role-employee {
   background: #e8f3f1;
-  color: var(--accent);
+  color: #0b695c;
+}
+
+.role-admin {
+  background: #fff1d6;
+  color: #805800;
+}
+
+.access-row {
+  margin-top: 28px;
+}
+
+.access-row p {
+  margin: 0;
+}
+
+.button {
+  min-height: 42px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 9px 16px;
   font-weight: 700;
 }
 
-.step p {
-  margin: 14px 0 0;
+.button-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.button-primary:hover {
+  background: var(--accent-hover);
+}
+
+.button-secondary {
+  border-color: var(--line);
+  background: #ffffff;
+  color: var(--foreground);
+}
+
+.success,
+.error {
+  margin: 22px 0 0;
   font-weight: 700;
 }
 
-@media (max-width: 760px) {
-  h1 {
-    font-size: 36px;
-  }
-
-  .workflow {
-    grid-template-columns: 1fr;
-  }
+.success {
+  color: var(--success);
 }
 
+.error {
+  color: var(--danger);
+}
+
+.error-row .error {
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 28px 0;
+  }
+
+  .brand-bar,
+  .profile-heading,
+  .access-row,
+  .error-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .brand-bar .button,
+  .access-row .button,
+  .error-row .button {
+    width: 100%;
+  }
+
+  .auth-panel {
+    min-height: 240px;
+    margin-top: 28px;
+    padding: 24px;
+  }
+}

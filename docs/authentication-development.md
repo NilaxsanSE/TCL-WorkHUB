@@ -35,6 +35,23 @@ The access token contains the public issuer that the browser used. The backend m
 
 Keeping these values separate is important when the application later moves behind HTTPS and a reverse proxy.
 
+## Secure Development Access
+
+The browser Web Crypto API required by PKCE is not available on a plain HTTP private-IP origin such as `http://10.20.11.110:3000`. Until the reverse proxy provides HTTPS, forward the server ports to localhost from PowerShell:
+
+```powershell
+ssh -L 3000:127.0.0.1:3000 -L 8000:127.0.0.1:8000 -L 8080:127.0.0.1:8080 nilaxsan@10.20.11.110
+```
+
+Keep that SSH window open and browse to `http://localhost:3000`. The services and data still run on the server; the tunnel only carries browser traffic securely over SSH.
+
+For this development mode, use localhost for these server `.env` values:
+
+- `BACKEND_CORS_ORIGINS=http://localhost:3000`
+- `KEYCLOAK_PUBLIC_ISSUER_URL=http://localhost:8080/realms/tcl-workhub`
+- `NEXT_PUBLIC_KEYCLOAK_URL=http://localhost:8080`
+- `NEXT_PUBLIC_BACKEND_URL=http://localhost:8000`
+
 ## Protected Test Routes
 
 - `GET /api/me`: any authenticated WorkHub employee or administrator

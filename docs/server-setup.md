@@ -24,6 +24,16 @@ The initial development environment is installed at `/opt/tcl-workhub`.
 
 The current Keycloak configuration uses development mode while access is limited to the private network. Production mode and HTTPS proxy settings must be completed with the TechCenter reverse proxy before public use.
 
+### Browser Access During Development
+
+Keycloak PKCE needs a secure browser context. Plain HTTP on the private server IP does not provide one, so use an SSH tunnel until HTTPS is configured:
+
+```powershell
+ssh -L 3000:127.0.0.1:3000 -L 8000:127.0.0.1:8000 -L 8080:127.0.0.1:8080 nilaxsan@10.20.11.110
+```
+
+Then open `http://localhost:3000`. Docker and all project data remain on the Debian server.
+
 ## After SSH Access Is Available
 
 1. Log in to the server.

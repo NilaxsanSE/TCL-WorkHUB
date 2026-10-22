@@ -22,6 +22,7 @@ class WorkSession(UUIDPrimaryKeyMixin, TimestampMixin, Base):
             "user_id",
             unique=True,
             postgresql_where=text("status = 'open'"),
+            sqlite_where=text("status = 'open'"),
         ),
     )
 
@@ -58,6 +59,13 @@ class WorkBreak(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "work_breaks"
     __table_args__ = (
         CheckConstraint("ended_at IS NULL OR ended_at >= started_at", name="ck_break_end_after_start"),
+        Index(
+            "uq_active_break_per_session",
+            "work_session_id",
+            unique=True,
+            postgresql_where=text("ended_at IS NULL"),
+            sqlite_where=text("ended_at IS NULL"),
+        ),
     )
 
     work_session_id: Mapped[uuid.UUID] = mapped_column(

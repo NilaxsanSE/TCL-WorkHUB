@@ -12,6 +12,8 @@ from app.auth import get_current_user, require_admin, require_employee
 from app.db.session import get_db
 from app.models.enums import UserRole
 from app.models.user import User
+from app.time_tracking import admin_router as admin_time_router
+from app.time_tracking import employee_router as employee_time_router
 
 app = FastAPI(title=settings.project_name)
 app.add_middleware(
@@ -21,6 +23,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(employee_time_router)
+app.include_router(admin_time_router)
 
 
 class CurrentUserResponse(BaseModel):

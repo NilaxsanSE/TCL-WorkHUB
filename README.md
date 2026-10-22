@@ -34,6 +34,10 @@ The first version will support:
 
 The first protected endpoints and browser login flow use Keycloak Authorization Code Flow with PKCE. FastAPI validates signed access tokens and synchronizes the authenticated identity to the local `users` table. See [Authentication Development](docs/authentication-development.md) for the flow and configuration model.
 
+## Time Tracking
+
+Employees can check in, record breaks, check out, and review their own session history. Administrators can review sessions across all employees. The API rules and duration model are documented in [Time Tracking Development](docs/time-tracking-development.md).
+
 ## Local Policy
 
 This repository is prepared locally, but heavy Docker builds and database volumes should run on the server because local disk space is limited.

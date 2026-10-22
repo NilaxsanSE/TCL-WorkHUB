@@ -127,7 +127,7 @@ def open_session_query(user_id: uuid.UUID):
 
 
 def get_open_session(database: Session, user_id: uuid.UUID, *, lock: bool = False):
-    statement = open_session_query(user_id)
+    statement = open_session_query(user_id).execution_options(populate_existing=True)
     if lock:
         statement = statement.with_for_update()
     return database.scalar(statement)
